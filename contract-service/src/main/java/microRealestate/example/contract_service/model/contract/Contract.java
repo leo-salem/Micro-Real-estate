@@ -1,4 +1,4 @@
-package microRealestate.example.contract_service.model.Contract;
+package microRealestate.example.contract_service.model.contract;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 
 @Entity
 @Table(name = "contracts")

@@ -1,4 +1,4 @@
-package microRealestate.example.contract_service.model.Contract;
+package microRealestate.example.contract_service.model.contract;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -13,13 +13,11 @@ import java.time.LocalDate;
 @Builder
 
 @Entity
-@Table(name = "installments")
-public class InstallmentContract extends Contract {
-    private Double totalPrice;
-    private Double downPayment;
+@Table(name = "leases")
+public class LeaseContract extends Contract {
     private LocalDate startDate;
     private LocalDate endDate;
-    private Double InstallmentAmount;
+    private Double monthlyRent;
     private Integer durationInMonths;
     private Integer dueDayOfMonth;
     private Double lateFeeRate;

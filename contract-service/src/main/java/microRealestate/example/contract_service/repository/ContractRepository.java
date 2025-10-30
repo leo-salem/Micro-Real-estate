@@ -1,6 +1,6 @@
 package microRealestate.example.contract_service.repository;
 
-import microRealestate.example.contract_service.model.Contract.Contract;
+import microRealestate.example.contract_service.model.contract.Contract;
 import microRealestate.example.contract_service.model.enums.Status;
 import microRealestate.example.contract_service.model.enums.Type;
 import org.springframework.data.jpa.repository.JpaRepository;

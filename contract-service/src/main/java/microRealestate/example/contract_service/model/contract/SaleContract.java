@@ -1,4 +1,4 @@
-package microRealestate.example.contract_service.model.Contract;
+package microRealestate.example.contract_service.model.contract;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

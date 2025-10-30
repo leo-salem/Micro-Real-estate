@@ -1,11 +1,9 @@
 package microRealestate.example.contract_service.repository;
 
-import microRealestate.example.contract_service.model.Contract.InstallmentContract;
-import microRealestate.example.contract_service.model.Contract.LeaseContract;
+import microRealestate.example.contract_service.model.contract.LeaseContract;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.rmi.dgc.Lease;
 import java.time.LocalDate;
 import java.util.List;
 

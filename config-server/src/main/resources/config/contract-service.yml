@@ -14,8 +14,16 @@ spring:
     host: localhost
     username: ${RABBITMQ_USER}
     password: ${RABBITMQ_PASSWORD}
+
 server:
   port: 8086
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
 
 management:
   endpoints:
