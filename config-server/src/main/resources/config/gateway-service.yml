@@ -1,0 +1,111 @@
+spring:
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/micro-real-estate
+  cloud:
+    gateway:
+      routes:
+        - id: property-service
+          uri: lb://PROPERTY-SERVICE
+          predicates:
+            - Path=/api/property/**,/api/unit/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: propertyCircuitBreaker
+                fallbackUri: forward:/fallback
+
+        - id: contract-service
+          uri: lb://CONTRACT-SERVICE
+          predicates:
+            - Path=/api/contract/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: contractCircuitBreaker
+                fallbackUri: forward:/fallback
+
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/payment/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: paymentCircuitBreaker
+                fallbackUri: forward:/fallback
+
+        - id: notification-service
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/api/notification/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: notificationCircuitBreaker
+                fallbackUri: forward:/fallback
+
+        - id: user-management-service
+          uri: lb://USER-MANAGEMENT-SERVICE
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: userCircuitBreaker
+                fallbackUri: forward:/fallback
+
+        - id: eureka-server
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/main
+          filters:
+            - name: RewritePath
+              args:
+                regexp: /eureka/main
+                replacement: /
+
+        - id: eureka-server-static
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/**
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      propertyCircuitBreaker:
+        failureRateThreshold: 50
+        slidingWindowSize: 5
+        waitDurationInOpenState: 10s
+
+      contractCircuitBreaker:
+        failureRateThreshold: 50
+        slidingWindowSize: 5
+        waitDurationInOpenState: 10s
+
+      paymentCircuitBreaker:
+        failureRateThreshold: 50
+        slidingWindowSize: 5
+        waitDurationInOpenState: 10s
+
+      notificationCircuitBreaker:
+        failureRateThreshold: 50
+        slidingWindowSize: 5
+        waitDurationInOpenState: 10s
+
+      userCircuitBreaker:
+        failureRateThreshold: 50
+        slidingWindowSize: 5
+        waitDurationInOpenState: 10s
