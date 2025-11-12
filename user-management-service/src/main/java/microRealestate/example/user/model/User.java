@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -16,17 +17,21 @@ import java.util.*;
 @Builder
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String keycloakID;
     private String firstName;
     private String lastName;
     private String email;  // unique
     private String phoneNumber;
     private String address;
+    private String username;
+    private String password;
     // Payment info if needed for Stripe
     private String paymentAccountId;
 

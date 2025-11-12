@@ -32,7 +32,14 @@ management:
 
 
 
-
+keycloak:
+  admin:
+    username: admin
+    password: admin
+    server-url: http://localhost:8443
+    realm: micro-real-estate
+    client-id: admin-cli
+    client-uid: #for each client there is one
 
 
 
